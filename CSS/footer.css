@@ -1,0 +1,203 @@
+/* ============================================
+   La Ruta del Nogal — Footer
+   ============================================ */
+
+:root {
+  --verde-oscuro: #143813;
+  --verde-oscuro-2: #143813;
+  --crema: #f4efe0;
+  --texto-claro: #f4efe0;
+  --borde: rgb(255, 248, 228);
+
+  --footer-maxw: 1400px;
+  --transicion: 0.2s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   FOOTER — contenedor general
+   ============================================ */
+
+.site-footer {
+  width: 100%;
+  color: var(--texto-claro);
+}
+
+/* ============================================
+   FILA SUPERIOR — contacto y redes
+   ============================================ */
+
+.footer-top {
+  background: var(--verde-oscuro);
+}
+
+.footer-top__inner {
+  max-width: var(--footer-maxw);
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.footer-location,
+.footer-phone,
+.footer-handle {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1rem;
+  transition: opacity var(--transicion);
+}
+
+.footer-location {
+  align-items: flex-start;
+}
+
+.footer-location .icon,
+.footer-phone .icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.footer-location:hover,
+.footer-phone:hover,
+.footer-handle:hover {
+  opacity: 0.8;
+}
+
+.footer-handle {
+  font-weight: 600;
+}
+
+.footer-divider {
+  width: 1px;
+  height: 32px;
+  background: var(--borde);
+  flex-shrink: 0;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(244, 239, 224, 0.12);
+  transition: background var(--transicion), transform var(--transicion);
+}
+
+.footer-social a:hover {
+  background: rgba(244, 239, 224, 0.25);
+  transform: translateY(-1px);
+}
+
+.footer-social .icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* ============================================
+   FILA INFERIOR — copyright y legales
+   ============================================ */
+
+.footer-bottom {
+  background: var(--verde-oscuro-2);
+}
+
+.footer-bottom__inner {
+  max-width: var(--footer-maxw);
+  margin: 0 auto;
+  padding: 0.9rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.footer-copy {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-legal a {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  transition: opacity var(--transicion);
+}
+
+.footer-legal a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* ============================================
+   RESPONSIVE — TABLET / MÓVIL
+   ============================================ */
+
+@media (max-width: 900px) {
+  .footer-social {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .footer-top__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .footer-divider {
+    display: none;
+  }
+
+  .footer-social {
+    align-self: flex-start;
+  }
+
+  .footer-bottom__inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-legal {
+    gap: 1.25rem;
+  }
+}

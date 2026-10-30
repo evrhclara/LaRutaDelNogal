@@ -1,0 +1,376 @@
+/* =========================================================
+   COLORES INDEPENDIENTES
+   Cada elemento tiene sus propias variables. Cambiar una
+   no afecta a ninguna otra.
+   ========================================================= */
+:root {
+  /* Página */
+  --page-bg: #8d7600;
+  --page-text: #fff8e1;
+
+  /* Navegación */
+  --navbar-bg: #3a400e;
+  --brand-logo-color: #ffffff;
+  --nav-link-color: #ffffffd9;
+  --nav-link-hover-color: #aebf2a;
+
+  /* Encabezado */
+  --badge-text: #3a400e;
+  --badge-bg: #f9f8f3;
+  --page-title-color: #f9f8f3;
+  --page-description-color: #fff8e1;
+
+  /* Formulario (tarjeta) */
+  --form-bg: #ffffff;
+  --form-border: #d9d9cf;
+  --form-label-color: #3a400e;
+  --required-color: #c93b2b;
+
+  /* Inputs */
+  --input-bg: #fafafa;
+  --input-text: #222222;
+  --input-border: #cfcfc4;
+  --input-focus-bg: #ffffff;
+  --input-focus-border: #7c8c03;
+  --input-focus-ring: rgba(174, 191, 42, 0.45);
+
+  /* Tarjetas radio */
+  --radio-card-bg: #fafafa;
+  --radio-card-border: #cfcfc4;
+  --radio-card-text: #222222;
+  --radio-card-hover-bg: #ffffff;
+  --radio-card-hover-border: #7c8c03;
+  --radio-dot-border: #b5b5a8;
+  --radio-dot-checked-bg: #7c8c03;
+  --radio-dot-checked-border: #7c8c03;
+  --radio-dot-inner: #ffffff;
+
+  /* Botón enviar */
+  --submit-bg: #3a400e;
+  --submit-text: #ffffff;
+  --submit-hover-bg: #7c8c03;
+
+  /* Tarjeta WhatsApp */
+  --support-bg: #ffffff;
+  --support-border: #d9d9cf;
+  --support-title-color: #3a400e;
+  --support-text-color: #555e48;
+  --whatsapp-bg: #25d366;
+  --whatsapp-text: #ffffff;
+  --whatsapp-hover-bg: #128c7e;
+
+  /* Sombras */
+  --shadow-soft: 0 10px 30px rgba(58, 64, 14, 0.12);
+
+  /* Tipografía */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+
+  /* Radios */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* El fondo va en html Y body: así no aparece gris
+   si el body no cubre toda la pantalla */
+html {
+  background-color: var(--page-bg);
+  min-height: 100%;
+}
+
+body {
+  background-color: #79ce03;
+  color: var(--page-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Navegación */
+.navbar {
+  background-color: var(--navbar-bg);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 1rem 2rem;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-logo {
+  color: var(--brand-logo-color);
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.8rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--nav-link-color);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--nav-link-hover-color);
+}
+
+/* Encabezado */
+.page-header {
+  padding: 4rem 1.5rem 2rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.subtitle-badge {
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  color: var(--badge-text);
+  background-color: var(--badge-bg);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  margin-bottom: 1rem;
+}
+
+.page-title {
+  font-family: var(--font-heading);
+  font-size: 2.75rem;
+  color: var(--page-title-color);
+  margin-bottom: 1rem;
+}
+
+.page-description {
+  font-size: 1.1rem;
+  color: var(--page-description-color);
+}
+
+/* Estructura del formulario */
+.form-wrapper {
+  max-width: 1200px;
+  margin: 0 auto 5rem;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.reservation-form {
+  background-color: var(--form-bg);
+  border: 1px solid var(--form-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--form-label-color);
+}
+
+.required {
+  color: var(--required-color);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="number"],
+.form-group input[type="date"] {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--input-bg);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--input-text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 3px var(--input-focus-ring);
+  background-color: var(--input-focus-bg);
+}
+
+/* Tarjetas radio de opción múltiple */
+.radio-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 0.25rem;
+}
+
+.radio-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--radio-card-border);
+  border-radius: var(--radius-sm);
+  background-color: var(--radio-card-bg);
+  color: var(--radio-card-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.radio-card:hover {
+  border-color: var(--radio-card-hover-border);
+  background-color: var(--radio-card-hover-bg);
+}
+
+.radio-card input[type="radio"] {
+  display: none;
+}
+
+.radio-custom {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--radio-dot-border);
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.radio-card input[type="radio"]:checked + .radio-custom {
+  border-color: var(--radio-dot-checked-border);
+  background-color: var(--radio-dot-checked-bg);
+}
+
+.radio-card input[type="radio"]:checked + .radio-custom::after {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background-color: var(--radio-dot-inner);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.radio-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* Botón de envío */
+.submit-button {
+  background-color: var(--submit-bg);
+  color: var(--submit-text);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: 1rem;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s;
+  margin-top: 1rem;
+}
+
+.submit-button:hover {
+  background-color: var(--submit-hover-bg);
+}
+
+.submit-button:active {
+  transform: scale(0.99);
+}
+
+/* Tarjeta lateral de soporte WhatsApp */
+.support-card {
+  background-color: var(--support-bg);
+  border: 1px solid var(--support-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.support-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: var(--support-title-color);
+  margin-bottom: 0.75rem;
+}
+
+.support-card p {
+  color: var(--support-text-color);
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+}
+
+.whatsapp-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--whatsapp-bg);
+  color: var(--whatsapp-text);
+  text-decoration: none;
+  padding: 1.1rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+.whatsapp-button:hover {
+  background-color: var(--whatsapp-hover-bg);
+  transform: translateY(-2px);
+}
+
+.whatsapp-button svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+@media (max-width: 868px) {
+  .form-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .radio-group {
+    grid-template-columns: 1fr;
+  }
+}
+
+html, body {
+  background: #023600 !important;
+}

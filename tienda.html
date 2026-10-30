@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tlami — Menú digital</title>
+  <meta name="description" content="Menú digital de Tlami. Platos fuertes, postres, bebidas y extras." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Rutas CSS corregidas -->
+  <link rel="stylesheet" href="CSS/tienda.css" />
+  <link rel="stylesheet" href="CSS/header.css" />
+  <link rel="stylesheet" href="CSS/footer.css" />
+</head>
+<body data-page="tienda">
+
+  <!-- Header dinámico unificado -->
+  <div id="header"></div>
+
+  <a class="skip-link" href="#menu">Saltar al menú</a>
+
+  <header class="hero">
+    <div class="hero__glow hero__glow--one" aria-hidden="true"></div>
+    <div class="hero__glow hero__glow--two" aria-hidden="true"></div>
+
+    <div class="hero__inner">
+      <nav class="hero__nav" aria-label="Principal">
+      </nav>
+      <p class="hero__eyebrow">Menú digital</p>
+      <h1 class="hero__title">Tlami</h1>
+      <span class="hero__rule" aria-hidden="true"></span>
+      <p class="hero__tagline">
+        Cocina de casa, comal y horno de leña &mdash; del Nogal a la mesa.
+
+
+
+      </p>
+    </div>
+  </header>
+
+  <nav class="category-nav" id="category-nav" aria-label="Categorías del menú">
+    <!-- Los enlaces de categoría se generan automáticamente desde js/menu.js -->
+  </nav>
+
+  <section id="destacados" class="featured" aria-labelledby="destacados-heading" hidden>
+    <div class="featured__inner">
+      <p class="featured__eyebrow" id="destacados-heading">Lo que no te puedes perder</p>
+      <div class="featured__track" id="featured-track">
+        <!-- Tarjetas destacadas generadas desde js/menu.js -->
+      </div>
+    </div>
+  </section>
+
+  <main id="menu" class="menu">
+    <p class="menu-loading">Cargando menú&hellip;</p>
+  </main>
+
+  <button type="button" class="scroll-top" id="scroll-top" aria-label="Volver arriba" hidden>
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+      <path d="M12 5l-7 7h4v7h6v-7h4z" fill="currentColor" />
+    </svg>
+  </button>
+
+  <!-- Botón flotante del carrito -->
+  <a href="carrito.html" class="cart-float" id="cart-float-link" hidden aria-label="Ver carrito">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+      <path fill="currentColor" d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L20.63 5H5.21l-.95-2H1zM17 18c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+    </svg>
+    <span class="cart-float__count" id="cart-count" hidden>0</span>
+  </a>
+
+  <!-- Footer dinámico unificado -->
+  <div id="footer"></div>
+
+  <!-- Scripts corregidos -->
+  <script src="components.js"></script>
+  <script src="products.js"></script>
+  <script src="carrito-storage.js"></script>
+  <script src="menu.js"></script>
+
+</body>
+</html>

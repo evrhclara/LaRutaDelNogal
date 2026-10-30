@@ -1,0 +1,468 @@
+/* ==========================================================================
+   Nuestra experiencia — La Ruta del Nogal
+   Paleta: verde olivo (header/footer), crema cálido (contenido), acentos
+   en verde claro para íconos y estado activo del menú.
+   ========================================================================== */
+
+:root {
+  --color-olive-dark: #113800;
+  --color-olive: #ffffff;
+  --color-olive-light: #365300;
+  --color-cream: #113800;
+  --color-card: #1e3500;
+  --color-ink: #ddffd6;
+  --color-muted: #f3fff0;
+  --color-line: #ddd2b4;
+  --color-surface: #ffffff;
+
+  --font-display: Georgia, serif;
+  --font-body: bold;
+
+  --content-width: 1180px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+}
+
+s
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #f1ffd6 ;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-olive-light);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+  background: var(--color-surface);
+  color: var(--color-olive-dark);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+
+
+
+/* ---------- Marcadores de fotografía (sustituir por <img> real) ---------- */
+
+/* 1. Forzar que CUALQUIER imagen ocupe el 100% del cuadro que la contiene */
+.thumb-photo img,
+.gallery__item img,
+.craft__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Llena el cuadro exacto recortando excesos sin deformar la foto */
+  object-position: center;
+  display: block;
+}
+
+/* 2. Definir las dimensiones exactas de las fotos en la fila de miniaturas */
+.thumb-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.thumb-photo {
+  width: 100%;
+  height: 140px; /* Tamaño fijo del cuadro para las miniaturas */
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+
+/* 4. Definir las dimensiones de las fotos de Artesanías y Juntas Auxiliares */
+.craft__media {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+}
+
+.craft__photo {
+  flex: 1;
+  height: 220px; /* Altura fija para el cuadro de artesanías */
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* ---------- Intro ---------- */
+
+.intro {
+  background-image: url("https://i.imgur.com/ZlMeTPP.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 0px;
+  overflow: hidden;
+  min-height: 350px;
+
+   display: flex;
+  align-items: left;
+  justify-content: left;
+  text-align: left;
+
+}
+
+.intro {
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)),
+    url("https://i.imgur.com/ZlMeTPP.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 350px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.intro__text {
+  line-height: 1.4;
+  max-width: 650px;
+  margin-left: 60px;
+  color: white;
+
+}
+
+.intro__inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.eyebrow {
+  margin: 0 0 0.6rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-olive);
+}
+
+
+
+
+.intro__lead {
+  margin: 0;
+  max-width: 48ch;
+  color: var(--color-muted);
+  font-size: 1.02rem;
+}
+
+/* ---------- Tarjetas de características ---------- */
+
+.features {
+  background: #f6f1e3;
+  padding: 4rem 1.5rem 2.5rem;
+  max-width: var(--content-width);
+  margin: 2 auto;
+  padding: 1.5rem 1.5rem 3rem;
+}
+
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.features__grid--wide {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.feature-card {
+  background: var(--color-card);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.35rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 28px -20px rgba(47, 61, 32, 0.45);
+}
+
+.feature-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #dfe6c9;
+  color: var(--color-olive);
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  margin: 0 0 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--color-ink);
+}
+
+.feature-card p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--color-muted);
+}
+
+.thumb-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* ---------- Galería + testimonio ---------- */
+
+.gallery {
+  background: #ffffff;
+  padding: 3rem 0;
+}
+.gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 160px;
+  grid-auto-flow: dense;      /* rellena los huecos */
+  gap: 1rem;
+}
+
+.gallery__item {
+  height: 100%;               /* que llene su celda, sin altura fija */
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--color-card);
+}
+
+.gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+ .gallery__item--landscape {
+  grid-column: span 3;
+
+}
+
+/* Tamaños para combinar */
+.gallery__item--wide {        /* 2 columnas x 2 filas */
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.gallery__item--tall {        /* 1 columna x 2 filas */
+  grid-row: span 2;
+}
+
+.gallery__quote {
+  grid-column: span 1;
+  margin: 0;
+  background: var(--color-olive-dark);
+  color: #f3efe0;
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ---------- Artesanías ---------- */
+
+.crafts {
+  background: var(--color-olive-dark);
+  color: #f1ecdd;
+  padding: 3.5rem 0;
+}
+
+.crafts__inner {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.craft {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.craft--reverse .craft__media {
+  order: 2;
+}
+
+.craft__media {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.craft__photo {
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(145deg, #4a5a33, #3a4826);
+  color: #c9cfae;
+}
+
+.craft__text h2 {
+  margin: 0 0 0.9rem;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+}
+
+.craft__text p {
+  margin: 0;
+  color: #d6d3bf;
+  font-size: 0.95rem;
+  max-width: 46ch;
+}
+
+
+
+
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 960px) {
+  .intro__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .features__grid,
+  .features__grid--wide {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery__item--wide {
+    grid-column: span 2;
+  }
+
+  .craft,
+  .craft--reverse .craft__media {
+    grid-template-columns: 1fr;
+    order: 0;
+  }
+
+  .craft {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer__inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .features__grid,
+  .features__grid--wide,
+  .thumb-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .header-container {
+    flex-wrap: wrap;
+  }
+
+  .nav-list {
+    gap: 1rem;
+  }
+}
+
+.feature-card__icon svg {
+  color: #1e3500 !important;
+}
+
+.feature-card__icon svg path {
+  fill: #1e3500 !important;
+}
+
+/* Reseteo completo del contenedor de miniaturas */
+.thumb-row {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important; /* 4 columnas exactas */
+  gap: 1.5rem !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  grid-column: 1 / -1 !important; /* Rompe cualquier restricción de columna previa */
+  margin: 2.5rem 0 0 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Cuadro individual para cada foto */
+.thumb-photo {
+  width: 100% !important;
+  height: 180px !important; /* Altura fija uniforme para todas las fotos */
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  background-color: #e2e8f0; /* Color gris claro por si falla alguna ruta */
+}
+
+/* Ajuste absoluto de la imagen al cuadro */
+.thumb-photo img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+}
+
+/* Ajuste para dispositivos móviles */
+@media (max-width: 768px) {
+  .thumb-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}

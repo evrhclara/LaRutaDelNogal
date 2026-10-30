@@ -1,0 +1,389 @@
+/* ============================================
+   La Ruta del Nogal — Contenido principal
+   ============================================ */
+
+:root {
+  --verde-oscuro: #ffffff;
+  --verde-oscuro-2: #f5f7f3;
+  --crema: #f4efe0;
+  --crema-2: #ede6d3;
+  --texto-oscuro: #143813;
+  --texto-suave: #63635b;
+  --borde: rgba(0, 0, 0, 0.08);
+
+  --maxw: 1400px;
+  --radio: 10px;
+  --transicion: 0.25s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  color: var(--texto-oscuro);
+  background: var(--crema);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.section-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  text-align: center;
+}
+
+.section-title {
+  margin: 0 0 1rem;
+  font-size: 2rem;
+  font-family: Georgia, 'Times New Roman', serif;
+  text-align: center;
+}
+
+/* ============================================
+   BOTONES
+   ============================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background var(--transicion), transform var(--transicion), color var(--transicion);
+  white-space: nowrap;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn--solid {
+  background: var(--verde-oscuro);
+  color: var(--crema);
+}
+
+.btn--solid:hover {
+  background: var(--verde-oscuro-2);
+}
+
+.btn--outline {
+  background: rgba(244, 239, 224, 0.9);
+  color: var(--texto-oscuro);
+  border: 1px solid rgba(1, 90, 5, 0.685);
+}
+
+.btn--outline:hover {
+  background: var(--crema);
+}
+
+.btn--dark {
+  background: var(--verde-oscuro);
+  color: var(--crema);
+}
+
+.btn--dark:hover {
+  background: var(--verde-oscuro-2);
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+
+.hero {
+  position: relative;
+  height: 78vh;
+  min-height: 460px;
+  overflow: hidden;
+}
+
+.hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(to right, rgba(6, 68, 0, 0.6), rgba(87, 194, 0, 0));
+}
+
+.hero__actions {
+  position: absolute;
+  left: 1.5rem;
+  bottom: 2rem;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+
+}
+
+.hero__content {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  padding: 0 1.5rem;
+  top: 45%;                /* lo empuja hacia abajo */
+}          /* mismo margen izquierdo que tus botones */
+
+
+.hero__title {
+  margin: 0;
+  color: #fff;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 550; /* 700 = bold */
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  letter-spacing: 1px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.7);
+}
+
+
+/* ============================================
+   NUESTRA EXPERIENCIA
+   ============================================ */
+
+.experiencia {
+  position: relative;
+  background: var(--crema);
+  padding: 4rem 0 5rem;
+}
+
+.experiencia__inner {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.experiencia__text .eyebrow,
+.experiencia__text .section-title {
+  text-align: left;
+}
+
+.experiencia__desc {
+  color: var(--texto-suave);
+  line-height: 1.6;
+  margin: 0 0 1.5rem;
+}
+
+.experiencia__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.feature-card {
+  background: var(--crema-2);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+}
+
+.feature-card__icon {
+  width: 34px;
+  height: 34px;
+  fill: none;
+  stroke: var(--verde-oscuro);
+  stroke-width: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.feature-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.feature-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  line-height: 1.5;
+}
+
+/* Divisor ondulado */
+
+.wave-divider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  width: 100%;
+  height: 40px;
+  fill: var(--crema-2);
+}
+
+/* ============================================
+   EXPERIENCIAS
+   ============================================ */
+
+.experiencias {
+  background: var(--crema-2);
+  padding: 4rem 0 4.5rem;
+}
+
+.experiencias__header {
+  margin-bottom: 2.5rem;
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.activity-card {
+  position: relative;
+  text-align: center;
+}
+
+.activity-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radio);
+}
+
+.activity-card__icon {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate(-2%, -2%);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--verde-oscuro);
+  border-radius: 50%;
+  color: var(--crema);
+  border: 3px solid var(--crema-2);
+}
+
+.activity-card__icon .icon {
+  width: 18px;
+  height: 18px;
+  fill: var(--crema);
+}
+
+.activity-card h3 {
+  margin: 1.5rem 0 0.4rem;
+  font-size: 1.05rem;
+}
+
+.activity-card p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+  line-height: 1.5;
+  padding: 0 0.5rem;
+}
+
+.experiencias__cta {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+
+
+}
+
+
+
+/* ============================================
+   RESPONSIVE — TABLET / MÓVIL
+   ============================================ */
+
+@media (max-width: 1080px) {
+  .activity-grid {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 2.5rem;
+  }
+}
+
+@media (max-width: 960px) {
+  .experiencia__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .experiencia__text .eyebrow,
+  .experiencia__text .section-title {
+    text-align: center;
+  }
+
+  .experiencia__text {
+    text-align: center;
+  }
+
+  .experiencia__text .btn {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    height: 60vh;
+    min-height: 380px;
+  }
+
+  .hero__actions {
+    left: 1rem;
+    right: 1rem;
+    bottom: 1.25rem;
+  }
+
+  .hero__actions .btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .experiencia__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .activity-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 1.6rem;
+  }
+}

@@ -1,0 +1,190 @@
+/* ==========================================================================
+   RESET Y ESTILOS BASE
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Georgia, serif;
+  font-weight: bold;
+  background-color: #1a1a1a; /* Fondo provisional para prueba */
+}
+
+/* ==========================================================================
+   HEADER PRINCIPAL
+   ========================================================================== */
+.main-header {
+  width: 100%;
+  /* Fondo degradado azul oscuro profundo acorde al diseño */
+  background: linear-gradient(180deg, #feffe4 0%, #f9ffd6de 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  position: relative;
+  z-index: 1000;
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 13px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+/* ==========================================================================
+   LOGO
+   ========================================================================== */
+.header-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.header-logo a {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 50px; /* Ajusta la altura del logo según tus necesidades */
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.logo-img:hover {
+  transform: scale(1.02);
+}
+
+/* ==========================================================================
+   NAVEGACIÓN
+   ========================================================================== */
+.header-nav {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 22px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-link {
+  color: #113800;
+  text-decoration: none;
+  font-size: 16px !important;
+  font-family: Georgia, serif;
+  font-weight: bold;
+  letter-spacing: 0.95px;
+  padding: 6px 4px;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  position: relative;
+  white-space: nowrap;
+}
+
+/* Efecto hover y enlace activo */
+.nav-link:hover,
+.nav-link-active {
+    color: #48c500 !important;
+}
+
+/* Línea sutil indicadora debajo del link activo/hover */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #379600;
+  box-shadow: 0 0 6px rgba(104, 255, 3, 0.568);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  opacity: 0;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 80%;
+  opacity: 1;
+}
+
+/* ==========================================================================
+   BOTÓN RESERVAR
+   ========================================================================== */
+.header-action {
+  flex-shrink: 0;
+}
+
+.btn-reservar {
+  display: inline-block;
+  padding: 20px 28px;
+  background: linear-gradient(180deg, #516429 0%, #3a4a1b 100%);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-family: Outfit;
+  font-weight: bold;;
+  border-radius: 12px;
+  border: 1px solidcolor rgba(255, 255, 255, 0.15);
+  box-shadow: inse 0 1px 1px rgba(255, 255, 255, 0.3), 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn-reservar:hover {
+  background: linear-gradient(180deg, #5e7430 0%, #445720 100%);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4), 0 0 12px rgba(110, 140, 50, 0.5);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (DISPOSITIVOS MÓVILES Y TABLETS)
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .header-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .nav-list {
+    gap: 14px;
+  }
+  
+  .nav-link {
+    font-size: 0.88rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    gap: 15px;
+    padding: 16px;
+  }
+
+  .header-nav {
+    width: 100%;
+  }
+
+  .nav-list {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .btn-reservar {
+    width: 100%;
+    padding: 12px 0;
+  }
+}

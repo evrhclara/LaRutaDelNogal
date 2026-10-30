@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tu carrito — La Ruta del Nogal</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="CSS/carrito.css" />
+</head>
+
+<div id="header"></div>
+
+<body>
+
+  <!--
+    Esta página contiene SOLO lo que va dentro del <body> de tu sitio:
+    no incluye tu header.html ni tu footer.html. Pégala entre ellos.
+
+    El carrito se lee y se escribe en localStorage bajo la llave
+    "carritoRutaDelNogal" (ver carrito.js). Cada producto agregado desde
+    otra página de tu sitio (galería, gastronomía, etc.) debe guardarse
+    con esta forma:
+
+    {
+      id: "aceite-nuez",       // único por producto
+      nombre: "Aceite de Nuez",
+      precio: 20.00,           // precio unitario, número
+      cantidad: 1,              // número
+      unidad: "",               // opcional: "kg", "pz", etc. ("" = sin unidad)
+      imagen: ""                 // URL de la foto del producto (ver más abajo)
+    }
+  -->
+
+  <main class="cart-page" id="carrito-app">
+
+    <section class="cart-table-section" aria-labelledby="cart-title">
+      <h1 id="cart-title">Tu carrito de productos locales</h1>
+
+      <!-- Estado "carrito vacío": se muestra/oculta desde carrito.js -->
+      <p class="cart-empty" id="cart-empty" hidden>
+        Tu carrito está vacío por ahora. Agrega productos desde la tienda para verlos aquí.
+      </p>
+
+      <!-- Tabla de productos: las filas se generan en carrito.js a partir de localStorage -->
+      <table class="cart-table" id="cart-table">
+        <thead>
+          <tr>
+            <th class="col-index" scope="col"><span class="sr-only">#</span></th>
+            <th class="col-product" scope="col">Producto</th>
+            <th class="col-price" scope="col">Precio</th>
+            <th class="col-qty" scope="col">Cantidad</th>
+            <th class="col-subtotal" scope="col">Subtotal</th>
+            <th class="col-remove" scope="col"><span class="sr-only">Quitar</span></th>
+          </tr>
+        </thead>
+        <tbody id="cart-items">
+          <!-- Filas de productos: generadas por carrito.js -->
+        </tbody>
+      </table>
+    </section>
+
+    <aside class="cart-sidebar">
+
+      
+          <strong>Cada compra apoya a los productores y campesinos de San Nicolás de
+          los Ranchos y contribuye a la conservación de la zona.</strong>
+        </p>
+      </div>
+
+      <div class="order-summary">
+        <h2>Resumen del pedido</h2>
+
+        <dl class="order-summary__rows">
+          <div class="order-summary__row">
+            <dt>Subtotal</dt>
+            <dd id="summary-subtotal">$0.00</dd>
+          </div>
+          <div class="order-summary__row">
+            <dt>Envío</dt>
+            <dd class="muted">Calculado al finalizar</dd>
+          </div>
+          <div class="order-summary__row">
+            <dt>Descuentos</dt>
+            <dd id="summary-discount">-$0.00</dd>
+          </div>
+        </dl>
+
+        <div class="order-summary__total">
+          <span>Total</span>
+          <span id="summary-total">$0.00</span>
+        </div>
+
+        <div class="cart-actions">
+          <a href="../gastronomia/gastronomia.html" class="btn btn--outline">Continuar comprando</a>
+          <a href="#" class="btn btn--solid" id="checkout-btn">Finalizar compra</a>
+        </div>
+      </div>
+
+    </aside>
+
+  </main>
+
+  <!-- Módulo compartido del carrito: debe cargarse ANTES que carrito.js -->
+  <script src="carrito-storage.js"></script>
+  <script src="carrito.js"></script>
+
+  <div id="footer"></div>
+  <script src="components.js"></script>
+  
+</body>
+</html>

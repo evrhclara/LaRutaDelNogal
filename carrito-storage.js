@@ -1,0 +1,130 @@
+/**
+ * carrito-storage.js — MÓDULO COMPARTIDO DEL CARRITO
+ * ----------------------------------------------------------------
+ * Única fuente de verdad para leer/escribir el carrito en localStorage.
+ * Lo usan tanto js/menu.js (para agregar productos) como carrito.js
+ * (para mostrarlos, cambiarles cantidad o quitarlos).
+ *
+ * Inclúyelo ANTES de menu.js y ANTES de carrito.js en el HTML:
+ *   <script src="../js/carrito-storage.js"></script>
+ *   <script src="js/menu.js"></script>
+ *
+ * FORMATO DE CADA PRODUCTO GUARDADO:
+ *   {
+ *     id: "chile-en-nogada",   // identificador único (string)
+ *     nombre: "Chile en nogada",
+ *     precio: 380,              // precio unitario (número)
+ *     cantidad: 1,                // número
+ *     unidad: "",                  // opcional: "kg", "pz"... ("" = sin unidad)
+ *     imagen: "https://..."         // opcional: URL de la foto del producto
+ *   }
+ */
+
+(function (global) {
+  "use strict";
+
+  const CART_KEY = "carritoRutaDelNogal";
+
+  function obtener() {
+    try {
+      const datos = localStorage.getItem(CART_KEY);
+      return datos ? JSON.parse(datos) : [];
+    } catch (error) {
+      console.error("No se pudo leer el carrito de localStorage:", error);
+      return [];
+    }
+  }
+
+  function guardar(carrito) {
+    try {
+      localStorage.setItem(CART_KEY, JSON.stringify(carrito));
+      // Avisa a la propia pestaña (el evento "storage" nativo solo dispara
+      // en OTRAS pestañas). Así, cualquier parte de la página que esté
+      // escuchando "carrito:actualizado" puede refrescarse al instante.
+      global.dispatchEvent(new CustomEvent("carrito:actualizado", { detail: carrito }));
+    } catch (error) {
+      console.error("No se pudo guardar el carrito en localStorage:", error);
+    }
+  }
+
+  /**
+   * Agrega un producto al carrito. Si ya existe (mismo id), suma la
+   * cantidad en vez de duplicar la fila.
+   * producto: { id, nombre, precio, unidad, imagen }
+   */
+  function agregar(producto, cantidad) {
+    if (!producto || !producto.id) {
+      console.error("agregar() necesita un producto con id.");
+      return obtener();
+    }
+
+    cantidad = Number(cantidad) || 1;
+
+    const carrito = obtener();
+    const existente = carrito.find((p) => p.id === producto.id);
+
+    if (existente) {
+      existente.cantidad = Number(existente.cantidad || 0) + cantidad;
+    } else {
+      carrito.push({
+        id: producto.id,
+        nombre: producto.nombre || "",
+        precio: Number(producto.precio) || 0,
+        cantidad: cantidad,
+        unidad: producto.unidad || "",
+        imagen: producto.imagen || "",
+      });
+    }
+
+    guardar(carrito);
+    return carrito;
+  }
+
+  function cambiarCantidad(id, delta) {
+    const carrito = obtener();
+    const producto = carrito.find((p) => p.id === id);
+    if (!producto) return carrito;
+
+    producto.cantidad = Math.max(1, Number(producto.cantidad || 0) + delta);
+    guardar(carrito);
+    return carrito;
+  }
+
+  function quitar(id) {
+    const carrito = obtener().filter((p) => p.id !== id);
+    guardar(carrito);
+    return carrito;
+  }
+
+  function vaciar() {
+    guardar([]);
+  }
+
+  /** Total de artículos (suma de cantidades), para mostrar en un badge. */
+  function contarArticulos() {
+    return obtener().reduce((total, p) => total + Number(p.cantidad || 0), 0);
+  }
+
+  function calcularTotales(carrito) {
+    carrito = carrito || obtener();
+    const subtotal = carrito.reduce(
+      (suma, p) => suma + Number(p.precio || 0) * Number(p.cantidad || 0),
+      0
+    );
+    const descuentos = 0;
+    const total = subtotal - descuentos;
+    return { subtotal, descuentos, total };
+  }
+
+  global.CarritoStorage = {
+    CART_KEY,
+    obtener,
+    guardar,
+    agregar,
+    cambiarCantidad,
+    quitar,
+    vaciar,
+    contarArticulos,
+    calcularTotales,
+  };
+})(window);
