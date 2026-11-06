@@ -8,11 +8,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="CSS/reservaciónes.css">
+  <meta name="description" content="Reserva tu visita guiada a La Ruta del Nogal en San Nicolás de los Ranchos, Puebla.">
+  <meta property="og:url" content="Reservaciónes.html">
+  <link rel="canonical" href="Reservaciónes.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:title" content="Reservas | La Ruta del Nogal">
+  <meta property="og:description" content="Reserva tu experiencia ecoturística entre nogales en San Nicolás de los Ranchos.">
 </head>
-
+<body data-page="reservas">
 <div id="header"></div>
-
-<body>
+<a class="skip-link" href="#contenido-reserva">Saltar al contenido</a>
 
 
   <!-- Encabezado Principal -->
@@ -25,21 +31,24 @@
   </header>
 
   <!-- Contenedor del Formulario y Ayuda -->
-  <main class="form-wrapper">
+  <main class="form-wrapper" id="contenido-reserva" tabindex="-1">
     
     <!-- Para guardar respuestas directamente en Google Sheets o email, reemplaza "YOUR_FORM_ACTION_URL" por el endpoint de Formspree, SheetDB o Web3Forms -->
     <form action="https://script.google.com/macros/s/AKfycbwEWMeF2CkySXt3qm7pL4dVldXGxl87Xk-IqSGKqHGB9ONPNbNnKw0JJ2KVyzZ5UGVLyQ/exec" method="POST" class="reservation-form" id="form-reservas">
+      <fieldset>
+        <legend>Datos de reserva</legend>
 
       <!-- 1. Nombre -->
       <div class="form-group">
         <label for="nombre">1. Nombre completo <span class="required">*</span></label>
-        <input type="text" id="nombre" name="nombre" placeholder="Ej. Ana María Gómez" required>
+        <input type="text" id="nombre" name="nombre" autocomplete="name" placeholder="Ej. Ana María Gómez" required>
       </div>
 
       <!-- 2. Tipo de visitante -->
       <div class="form-group">
         <label>2. ¿Eres agencia turística o particular? <span class="required">*</span></label>
-        <div class="radio-group">
+        <fieldset class="radio-group">
+          <legend class="sr-only">Tipo de visitante</legend>
           <label class="radio-card">
             <input type="radio" name="tipo_cliente" value="Particular" required>
             <span class="radio-custom"></span>
@@ -50,25 +59,25 @@
             <span class="radio-custom"></span>
             <span class="radio-label">Agencia Turística</span>
           </label>
-        </div>
+        </fieldset>
       </div>
 
       <!-- 3. Correo -->
       <div class="form-group">
         <label for="correo">3. Correo de contacto <span class="required">*</span></label>
-        <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
+        <input type="email" id="correo" name="correo" autocomplete="email" placeholder="ejemplo@correo.com" required>
       </div>
 
       <!-- 4. Teléfono -->
       <div class="form-group">
         <label for="telefono">4. Número de teléfono <span class="required">*</span></label>
-        <input type="tel" id="telefono" name="telefono" placeholder="+52 222 123 4567" required>
+        <input type="tel" id="telefono" name="telefono" autocomplete="tel" placeholder="+52 222 123 4567" required>
       </div>
 
       <!-- 5. Número de personas -->
       <div class="form-group">
         <label for="personas">5. Número de personas <span class="required">*</span></label>
-        <input type="number" id="personas" name="personas" min="1" max="100" placeholder="Ej. 4" required>
+        <input type="number" id="personas" name="personas" min="1" max="100" inputmode="numeric" placeholder="Ej. 4" required>
       </div>
 
       <!-- 6. Día y Mes -->
@@ -91,6 +100,8 @@
 
       <!-- Botón de Envío -->
       <button type="submit" class="submit-button">Confirmar Reservación</button>
+      </fieldset>
+      <p id="reserva-status" class="form-status" role="status" aria-live="polite"></p>
 
     </form>
 
@@ -110,29 +121,47 @@
 
 <script>
   const form = document.getElementById('form-reservas');
+  const fecha = document.getElementById('fecha');
+  const hoy = new Date();
+  const yyyy = hoy.getFullYear();
+  const mm = String(hoy.getMonth() + 1).padStart(2, '0');
+  const dd = String(hoy.getDate()).padStart(2, '0');
+  fecha.min = yyyy + '-' + mm + '-' + dd;
+  const estado = document.getElementById('reserva-status');
   
   form.addEventListener('submit', function(e) {
     e.preventDefault();
     
     const submitBtn = form.querySelector('.submit-button');
+    if (submitBtn.disabled) return;
     submitBtn.textContent = 'Enviando reserva...';
     submitBtn.disabled = true;
+    estado.textContent = 'Enviando tu reservación…';
 
     fetch(form.action, {
       method: 'POST',
+      redirect: 'follow',
       body: new FormData(form)
     })
-    .then(response => response.json())
-    .then(data => {
-      alert('¡Gracias! Tu reservación ha sido registrada correctamente.');
+    .then(async response => {
+      if (!response.ok) throw new Error('Respuesta HTTP no válida');
+      let data = null;
+      try { data = await response.clone().json(); } catch (_) {}
+      const confirmada = data && (data.success === true || data.result === 'success');
+      if (!confirmada) throw new Error('Respuesta de confirmación no confiable');
+      return data;
+    })
+    .then(() => {
       form.reset();
+      fecha.min = yyyy + '-' + mm + '-' + dd;
       submitBtn.textContent = 'Confirmar Reservación';
       submitBtn.disabled = false;
+      estado.textContent = '¡Gracias! Tu reservación ha sido registrada correctamente.';
     })
     .catch(error => {
-      alert('Ocurrió un error al enviar la reserva. Por favor intenta de nuevo o contáctanos por WhatsApp.');
       submitBtn.textContent = 'Confirmar Reservación';
       submitBtn.disabled = false;
+      estado.textContent = 'No pudimos confirmar la respuesta del servidor. No envíes de nuevo de inmediato; contáctanos por WhatsApp.';
     });
   });
 </script>

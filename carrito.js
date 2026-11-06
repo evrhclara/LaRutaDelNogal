@@ -57,6 +57,8 @@
       img.src = producto.imagen;
       img.alt = producto.nombre || "";
       img.loading = "lazy";
+      img.width = 80;
+      img.height = 80;
       celda.appendChild(img);
     } else {
       // COMENTARIO: aquí va la foto del producto cuando la tengas.
@@ -168,6 +170,7 @@
     const btnFinalizar = document.getElementById("checkout-btn");
     if (btnFinalizar) {
       btnFinalizar.setAttribute("aria-disabled", carrito.length === 0 ? "true" : "false");
+      btnFinalizar.disabled = carrito.length === 0;
     }
   }
 
@@ -230,4 +233,19 @@
   window.addEventListener("carrito:actualizado", renderizarCarrito);
 
   document.addEventListener("DOMContentLoaded", renderizarCarrito);
+  document.addEventListener("DOMContentLoaded", () => {
+    const boton = document.getElementById("checkout-btn");
+    if (!boton) return;
+    boton.addEventListener("click", () => {
+      const carrito = carritoStorage.obtener();
+      if (boton.disabled || carrito.length === 0) return;
+      boton.disabled = true;
+      const listado = carrito.map((p) =>
+        "- " + p.nombre + " x" + p.cantidad + ": $" + Number(p.precio * p.cantidad).toFixed(2)
+      ).join("\n");
+      const mensaje = encodeURIComponent("Hola, quiero finalizar mi pedido:\n" + listado);
+      window.open("https://wa.me/5212221275222?text=" + mensaje, "_blank", "noopener,noreferrer");
+      window.setTimeout(() => { renderizarCarrito(); }, 600);
+    });
+  });
 })();

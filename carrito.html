@@ -12,11 +12,16 @@
   />
 
   <link rel="stylesheet" href="CSS/carrito.css" />
+  <meta name="description" content="Revisa los productos de La Ruta del Nogal y continúa tu compra en la tienda.">
+  <link rel="canonical" href="carrito.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:title" content="Tu carrito — La Ruta del Nogal">
+  <meta property="og:description" content="Consulta los productos seleccionados antes de finalizar tu pedido por WhatsApp.">
 </head>
-
-<div id="header"></div>
-
-<body>
+<body data-page="carrito">
+  <div id="header"></div>
+  <a class="skip-link" href="#carrito-app">Saltar al contenido</a>
 
   <!--
     Esta página contiene SOLO lo que va dentro del <body> de tu sitio:
@@ -66,11 +71,9 @@
     </section>
 
     <aside class="cart-sidebar">
-
-      
+      <div class="cart-support">
           <strong>Cada compra apoya a los productores y campesinos de San Nicolás de
           los Ranchos y contribuye a la conservación de la zona.</strong>
-        </p>
       </div>
 
       <div class="order-summary">
@@ -97,8 +100,8 @@
         </div>
 
         <div class="cart-actions">
-          <a href="../gastronomia/gastronomia.html" class="btn btn--outline">Continuar comprando</a>
-          <a href="#" class="btn btn--solid" id="checkout-btn">Finalizar compra</a>
+          <a href="tienda.html" class="btn btn--outline">Continuar comprando</a>
+          <button type="button" class="btn btn--solid" id="checkout-btn" aria-disabled="true">Finalizar compra</button>
         </div>
       </div>
 

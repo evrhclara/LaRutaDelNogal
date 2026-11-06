@@ -28,7 +28,19 @@
   function obtener() {
     try {
       const datos = localStorage.getItem(CART_KEY);
-      return datos ? JSON.parse(datos) : [];
+      if (!datos) return [];
+      const valor = JSON.parse(datos);
+      if (!Array.isArray(valor)) throw new Error("Formato de carrito inválido");
+      return valor
+        .filter((p) => p && typeof p === "object" && typeof p.id === "string" && p.id.length > 0)
+        .map((p) => ({
+          id: p.id.slice(0, 100),
+          nombre: typeof p.nombre === "string" ? p.nombre.slice(0, 200) : "",
+          precio: Math.max(0, Number.isFinite(Number(p.precio)) ? Number(p.precio) : 0),
+          cantidad: Math.max(1, Math.min(100, Math.floor(Number.isFinite(Number(p.cantidad)) ? Number(p.cantidad) : 1))),
+          unidad: typeof p.unidad === "string" ? p.unidad.slice(0, 20) : "",
+          imagen: typeof p.imagen === "string" ? p.imagen.slice(0, 1000) : "",
+        }));
     } catch (error) {
       console.error("No se pudo leer el carrito de localStorage:", error);
       return [];
@@ -37,7 +49,13 @@
 
   function guardar(carrito) {
     try {
-      localStorage.setItem(CART_KEY, JSON.stringify(carrito));
+      if (!Array.isArray(carrito)) throw new Error("El carrito debe ser una lista");
+      const seguro = carrito.filter((p) => p && typeof p.id === "string").map((p) => ({
+        ...p,
+        precio: Math.max(0, Number(p.precio) || 0),
+        cantidad: Math.max(1, Math.min(100, Math.floor(Number(p.cantidad) || 1))),
+      }));
+      localStorage.setItem(CART_KEY, JSON.stringify(seguro));
       // Avisa a la propia pestaña (el evento "storage" nativo solo dispara
       // en OTRAS pestañas). Así, cualquier parte de la página que esté
       // escuchando "carrito:actualizado" puede refrescarse al instante.

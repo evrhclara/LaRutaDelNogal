@@ -27,7 +27,13 @@
    * Mañana puede ser: `return fetch('/api/productos').then(r => r.json());`
    */
   function obtenerProductos() {
-    return Promise.resolve(window.MENU_PRODUCTS || []);
+    const datos = Array.isArray(window.MENU_PRODUCTS) ? window.MENU_PRODUCTS : [];
+    return Promise.resolve(datos.filter((p) =>
+      p && typeof p === "object" &&
+      typeof p.id === "string" &&
+      typeof p.nombre === "string" &&
+      Number.isFinite(Number(p.precio))
+    ));
   }
 
   function obtenerOrdenCategorias() {
@@ -90,6 +96,8 @@
       img.src = producto.imagen;
       img.alt = producto.nombre || "";
       img.loading = "lazy";
+      img.width = 400;
+      img.height = 300;
       figura.appendChild(img);
     }
 
@@ -175,6 +183,16 @@
       );
 
       actualizarContadorCarrito();
+      let anuncio = document.getElementById("carrito-anuncio");
+      if (!anuncio) {
+        anuncio = document.createElement("div");
+        anuncio.id = "carrito-anuncio";
+        anuncio.className = "sr-only";
+        anuncio.setAttribute("aria-live", "polite");
+        anuncio.setAttribute("aria-atomic", "true");
+        document.body.appendChild(anuncio);
+      }
+      anuncio.textContent = producto.nombre + " agregado al carrito.";
 
       // Retroalimentación visual breve, sin alert() ni salir de la página.
       boton.textContent = "Agregado ✓";
@@ -261,6 +279,8 @@
       img.src = producto.imagen;
       img.alt = producto.nombre || "";
       img.loading = "lazy";
+      img.width = 400;
+      img.height = 300;
       media.appendChild(img);
     }
 

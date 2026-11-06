@@ -555,8 +555,8 @@ a {
   padding: 0.6rem 1rem;
   border: 1px solid var(--color-green);
   border-radius: 999px;
-  background: #ff0000; /*COLOR DEL BOTON AGREGAR AL CARRITO*/
-  color: var(--color-green);
+  background: var(--color-green);
+  color: #ffffff;
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 0.85rem;

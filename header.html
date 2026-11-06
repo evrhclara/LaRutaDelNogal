@@ -1,17 +1,17 @@
-<link rel="stylesheet" href="CSS/header.css">
-
 <header class="main-header">
   <div class="header-container">
-
     <div class="header-logo">
-      <a href="body.html">
-        <img src="https://i.imgur.com/gGlSIoQ.png" width="70" height="100" alt="La Ruta del Nogal" />
+      <a href="index.html">
+        <img src="https://i.imgur.com/gGlSIoQ.png" width="70" height="100" alt="La Ruta del Nogal">
       </a>
     </div>
-
-    <nav class="header-nav">
-      <ul class="nav-list">
-        <li><a href="body.html" class="nav-link" data-page="inicio">Inicio</a></li>
+    <button class="header-menu-button" type="button" aria-expanded="false" aria-controls="header-navigation">
+      <span class="sr-only">Abrir menú</span>
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </button>
+    <nav class="header-nav" aria-label="Navegación principal">
+      <ul class="nav-list" id="header-navigation">
+        <li><a href="index.html" class="nav-link" data-page="inicio">Inicio</a></li>
         <li><a href="nuestra-experiencia.html" class="nav-link" data-page="experiencia">Nuestra experiencia</a></li>
         <li><a href="Comollegar.html" class="nav-link" data-page="llegar">¿Cómo llegar?</a></li>
         <li><a href="tienda.html" class="nav-link" data-page="tienda">Tienda</a></li>
@@ -20,7 +20,7 @@
     </nav>
 
     <div class="header-action">
-      <a href="Reservaciónes.html" class="btn-reservar">Reservar</a>
+      <a href="Reservaciónes.html" class="btn-reservar" data-page="reservas">Reservar</a>
     </div>
 
   </div>
